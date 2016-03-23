@@ -1,0 +1,429 @@
+@import "media-queries";
+
+@font-face {
+  font-family: 'exo_2.0thin';
+  src: url('../fonts/exo2.0-thin-webfont.eot');
+  src: url('../fonts/exo2.0-thin-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/exo2.0-thin-webfont.woff2') format('woff2'),
+  url('../fonts/exo2.0-thin-webfont.woff') format('woff'),
+  url('../fonts/exo2.0-thin-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+// Mixins
+
+@mixin product-color($color){
+  .product__bg {
+    &:before {
+      border-color: $color;
+    }
+
+    &-header {
+      &:before {
+        border-color: $color;
+      }
+      &:after {
+        border-color: $color;
+      }
+    }
+
+    .product__weight {
+      background-color: $color;
+    }
+  }
+}
+
+// Main styles
+
+*{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.clearfix {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+// Variables
+
+$font-exo-thin: 'exo_2.0thin';
+$font-trebuchet: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+
+$product-width: 320px;
+$product-height: 480px;
+$product-color-blue: #1698d9;
+$product-color-blue-hover: #2ea8e6;
+$product-color-pink: #d91667;
+$product-color-pink-hover: #e62e7a;
+$product-color-gray: #b3b3b3;
+$product-bg-color: #f2f2f2;
+
+$main-font-color: #666;
+
+// Bg styles
+
+body {
+  margin: 0;
+}
+
+.wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: table;
+  height: 100%;
+  width: 100%;
+  background: url("../images/pattern.jpg");
+  font-family: $font-exo-thin;
+  color: $main-font-color;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 350px;
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 350px;
+    background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+}
+
+// Products
+
+.products {
+  padding: 45px 0;
+  position: relative;
+  z-index: 1;
+  display: table-cell;
+  vertical-align: middle;
+
+  &__title {
+    text-align: center;
+    color: #ffffff;
+    font-weight: normal;
+    margin: 0;
+    line-height: 1;
+    font-size: 36px;
+  }
+
+  &__items {
+    @extend .clearfix;
+    margin-left: -40px;
+    margin-right: -40px;
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  .product {
+    &__bg {
+      width: $product-width;
+      height: $product-height;
+      position: relative;
+      padding: 20px 20px 20px 45px;
+      cursor: pointer;
+      overflow: hidden;
+
+      &-header {
+        height: 45px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+
+        &:before {
+          content: '';
+          display: block;
+          width: 42px;
+          height: 45px;
+          background: $product-bg-color;
+          border-width: 5px 0 0 0;
+          border-style: solid;
+          transform: skewY(-45deg);
+          position: absolute;
+          z-index: -2;
+          top: 19px;
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          width: calc(100% - 45px);
+          height: 45px;
+          position: absolute;
+          z-index: -1;
+          top: 0;
+          right: 0;
+          background: $product-bg-color;
+          border-width: 4px 4px 0 0;
+          border-style: solid;
+          -webkit-border-radius: 0 12px 0 0;
+          -moz-border-radius: 0 12px 0 0;
+          border-radius: 0 12px 0 0;
+        }
+
+      }
+
+      //Bg styles
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: -1;
+        top: 41px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $product-bg-color;
+        border-width: 4px;
+        border-style: solid;
+        border-top: none;
+        -webkit-border-radius: 0 0 12px 12px;
+        -moz-border-radius: 0 0 12px 12px;
+        border-radius: 0 0 12px 12px;
+      }
+
+    }
+
+    &__descr {
+      p {
+        font-family: $font-trebuchet;
+        font-size: 16px;
+        line-height: 1;
+        margin: 0;
+
+        &.unhover {
+          display: none;
+          color: $product-color-pink-hover;
+        }
+      }
+    }
+
+    &__name {
+      font-family: $font-trebuchet;
+      color: #000000;
+      margin-top: 10px;
+
+      h2 {
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 1;
+        margin: 0;
+      }
+
+      span {
+        font-size: 24px;
+        margin-top: 5px;
+        display: inline-block;
+        font-weight: 700;
+      }
+    }
+
+    &__count {
+      font-family: $font-trebuchet;
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    &__weight {
+      width: 80px;
+      height: 80px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      text-align: center;
+      color: #ffffff;
+      font-family: $font-trebuchet;
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      z-index: 1;
+      padding-top: 5px;
+
+      strong {
+        display: block;
+        font-size: 42px;
+        font-weight: normal;
+      }
+
+      span {
+        font-size: 21px;
+        margin-top: -5px;
+        display: inline-block;
+      }
+    }
+
+    &__image {
+      position: absolute;
+      left: 4px;
+      bottom: 4px;
+      -webkit-border-radius: 0 0 0 9px;
+      -moz-border-radius: 0 0 0 9px;
+      border-radius: 0 0 0 9px;
+    }
+
+    &__trigger {
+      text-align: center;
+      color: #ffffff;
+      font-family: $font-trebuchet;
+      font-size: 13px;
+
+      a {
+        color: $product-color-blue;
+        text-decoration: none;
+        border-bottom: 1px $product-color-blue dashed;
+      }
+
+      p {
+        &.selected {
+          display: none;
+        }
+        &.disabled {
+          display: none;
+          color: #ff6;
+        }
+      }
+    }
+
+    &__item {
+      width: $product-width;
+      display: inline-block;
+      vertical-align: top;
+      text-align: left;
+      margin: 0 38px;
+      @include product-color($product-color-blue);
+
+      &:hover {
+        @include product-color($product-color-blue-hover);
+      }
+
+      &.selected {
+        @include product-color($product-color-pink);
+
+        .product__trigger {
+          p {
+            display: none;
+
+            &.selected {
+              display: block;
+            }
+          }
+        }
+
+        &:hover {
+          @include product-color($product-color-pink-hover);
+        }
+      }
+
+      &.unhover {
+        @include product-color($product-color-pink);
+
+        .product__descr {
+          p {
+            display: none;
+
+            &.unhover {
+              display: block;
+            }
+          }
+        }
+
+
+        &:hover {
+          @include product-color($product-color-pink-hover);
+        }
+
+      }
+
+      &.disabled {
+        @include product-color($product-color-gray);
+        cursor: auto;
+
+        .product__info, .product__image {
+          opacity: 0.5;
+        }
+
+        .product__trigger {
+          p {
+            display: none;
+
+            &.disabled {
+              display: block;
+            }
+          }
+        }
+      }
+
+
+    }
+
+  }
+
+}
+
+
+// Responsive styles
+
+@include max-screen(1200px){
+  .products__items {
+    margin: 25px 0 0;
+  }
+
+  .products {
+    .product__item {
+      margin: 0 20px;
+    }
+  }
+}
+
+@include max-screen(450px){
+  .products {
+    .product__item {
+      width: 270px;
+    }
+
+    .product__bg {
+      width: 270px;
+      margin-top: 20px;
+    }
+
+
+    .product__name {
+      h2 {
+        font-size: 42px;
+      }
+    }
+
+    .product__descr {
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
